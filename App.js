@@ -1,19 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./store";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+import Login from "./components/Login";
+import Users from "./components/Users";
+import Chat from "./components/Chat";
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const RootStack = createStackNavigator(
+  {
+    Login: {
+      screen: Login
+    },
+    Users: {
+      screen: Users
+    },
+    Chat: {
+      screen: Chat
+    }
   },
-});
+  {
+    initialRouteName: "Login",
+    navigationOptions: {
+      headerTitle: "Chat!"
+    }
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);

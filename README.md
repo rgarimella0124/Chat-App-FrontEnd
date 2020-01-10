@@ -1,4 +1,4 @@
-## Building a Persistent React Native Chat App Series
+## Building a Persistent React Native Chat App
 
 This repo is for a series on building a persistent React Native chat app.
 
